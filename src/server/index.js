@@ -11,7 +11,7 @@ db.run('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY, name TEXT)');
 const resources = [
 {   name: "Dementia Day Care",
     org: "Multiple Service Providers",
-    type: "Day Care, Dementia",
+    type: "Dementia",
     referral: "Referral required",
     free: "",
     location: "Multiple locations",
@@ -153,13 +153,130 @@ const resources = [
     audience: "Individuals, Couples, Families"
 },
 {
-    name: "Care Corner Counselling Centre",
-    org: "Care Corner Singapore Ltd",
+    name: "Caregivers-to-Caregivers Programme",
+    org: "Caregivers Alliance Limited",
+    type: "Caregiver Support, Mental Health",
+    referral: "",
+    free: "Free",
+    location: "Tiong Bahru, Online",
+    audience: "Individuals"
+},
+{
+    name: "Counselling and Care Centre (CCC)",
+    org: "Counselling and Care Centre",
+    type: "Counselling, Therapy, Mental Health, Marriage Prep",
+    referral: "",
+    free: "",
+    location: "Chinatown, Online",
+    audience: "Individuals, Couples, Children, Families"
+},
+{
+    name: "Counselling for Older Persons Programme",
+    org: "O'Joy Limited",
+    type: "Counselling, Caregiver Support",
+    referral: "",
+    free: "",
+    location: "Kallang, Online",
+    audience: "Individuals, Seniors"
+},
+{
+    name: "Family Support and Counselling Programme",
+    org: "WINGS Counselling Centre",
     type: "Counselling, Therapy, Mental Health",
     referral: "",
     free: "",
+    location: "Bartley, Online",
+    audience: "Individuals, Children, Youths, Couples, Families"
+},
+{
+    name: "Hua Mei Counselling and Coaching Programme",
+    org: "Hua Mei Centre for Successful Ageing",
+    type: "Counselling, Therapy, Mental Health, Caregiver Support",
+    referral: "",
+    free: "",
+    location: "Tiong Bahru, Online",
+    audience: "Individuals, Seniors, Families"
+},
+{
+    name: "Local Outreach to Suicide Survivors (LOSS)",
+    org: "Samaritans Of Singapore",
+    type: "Mental Health, Support Group, Counselling",
+    referral: "",
+    free: "Free",
+    location: "Tanjong Pagar, Online",
+    audience: "Individuals"
+},
+{
+    name: "SAGE Counselling Service",
+    org: "SAGE Counselling Centre",
+    type: "Mental Health, Counselling",
+    referral: "",
+    free: "Free",
+    location: "Jurong West, Online",
+    audience: "Individuals, Seniors"
+},
+{
+    name: "SAMH Insight Centre",
+    org: "Singapore Assiociation for Mental Health",
+    type: "Mental Health, Counselling",
+    referral: "",
+    free: "Free",
     location: "Toa Payoh, Online, Helpline",
-    audience: "Individuals, Couples, Families"
+    audience: "Individuals, Families"
+},
+{
+    name: "SAMH Group Homes",
+    org: "Singapore Assiociation for Mental Health",
+    type: "Mental Health, Counselling, Employment Support",
+    referral: "Referral required",
+    free: "",
+    location: "Bukit Batok",
+    audience: "Individuals, Families"
+},
+{
+    name: "SAMH Oasis Day Centre",
+    org: "Singapore Assiociation for Mental Health",
+    type: "Mental Health, Counselling",
+    referral: "Referral required",
+    free: "",
+    location: "Potong Pasir",
+    audience: "Individuals"
+},
+{
+    name: "SAMH Youthreach",
+    org: "Singapore Assiociation for Mental Health",
+    type: "Mental Health, Counselling",
+    referral: "Referral required",
+    free: "Free",
+    location: "Tiong Bahru",
+    audience: "Youths"
+},
+{
+    name: "SOS Suicide Crisis Intervention Programme",
+    org: "Samaritans Of Singapore",
+    type: "Mental Health, Suicide Intervention",
+    referral: "",
+    free: "Free",
+    location: "Tanjong Pagar, Online, Helpline",
+    audience: "Individuals"
+},
+{
+    name: "The Seniors Helpline",
+    org: "SAGE Counselling Centre",
+    type: "Mental Health, Caregiver Support",
+    referral: "",
+    free: "Free",
+    location: "Helpline",
+    audience: "Individuals, Seniors"
+},
+{
+    name: "Voices for Hope",
+    org: "Dementia Singapore",
+    type: "Mental Health, Dementia, Caregiver Support",
+    referral: "",
+    free: "Free",
+    location: "Bendemeer, Online",
+    audience: "Individuals, Seniors"
 },
 ];
 
