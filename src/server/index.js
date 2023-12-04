@@ -1,11 +1,11 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const app = express();
-const port = 3000;
+const port = 5173;
 
 // Create SQLite database and table
 const db = new sqlite3.Database('resources.db');
-db.run('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY, name TEXT)');
+db.run('CREATE TABLE IF NOT EXISTS resources (id INTEGER PRIMARY KEY, name TEXT)');
 
 // Hardcoded data
 const resources = [
@@ -281,14 +281,14 @@ const resources = [
 ];
 
 // Insert hardcoded data into the SQLite table
-initialItems.forEach(item => {
-  db.run('INSERT INTO items (name) VALUES (?)', [item.name]);
+resources.forEach(resource => {
+  db.run('INSERT INTO resources (name) VALUES (?)', [resource.name]);
 });
 
 // API endpoint to fetch items
-app.get('/api/items', (req, res) => {
+app.get('/api/resources', (req, res) => {
   // Retrieve items from the SQLite table
-  db.all('SELECT * FROM items', (err, rows) => {
+  db.all('SELECT * FROM resources', (err, rows) => {
     res.json(rows);
   });
 });
