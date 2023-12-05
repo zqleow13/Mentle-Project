@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "express": "^4.18.2",
+    "fast-csv": "^4.3.6",
     "sqlite3": "^5.1.6",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"

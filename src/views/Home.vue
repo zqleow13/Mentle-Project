@@ -7,6 +7,7 @@
 
     <!-- Search bar -->
     <div class="search-bar">
-        <button id="search"></button>
+        <input>
+        <button id="search">Search</button>
     </div>
 </template>
