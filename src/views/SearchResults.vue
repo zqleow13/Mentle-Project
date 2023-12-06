@@ -1,3 +1,7 @@
+<script setup>
+import { ref } from 'vue'
+</script>
+
 <template>
     <!-- Header -->
     <div class="search-header">
@@ -10,6 +14,7 @@
     <div class="search-bar">
         <input>
         <button id="search" type="submit">Search</button>
+        <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
     </div>
 
     <!-- Search results -->

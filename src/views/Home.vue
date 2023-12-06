@@ -1,3 +1,7 @@
+<script setup>
+import { ref } from 'vue'
+</script>
+
 <template>
     <!-- Project name and slogan -->
     <div class="header">
@@ -9,5 +13,6 @@
     <div class="search-bar">
         <input>
         <button id="search">Search</button>
+        <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
     </div>
 </template>
