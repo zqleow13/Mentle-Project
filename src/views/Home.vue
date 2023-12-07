@@ -1,5 +1,25 @@
-<script setup>
-import { ref } from 'vue'
+<script>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+export default {
+    setup() {
+        const router = useRouter();
+
+        // Initialise searchTerm - value of search input field 
+        const searchTerm = ref('');
+
+        // 'search' function - to be called when user submit the search form. It will navigate to search-results page with their search term value as query parameter
+        const search = () => {
+            router.push({ name: 'search-results', query: { term: searchTerm.value }});
+        };
+
+        return {
+            searchTerm,
+            search,
+        };
+    },
+};
 </script>
 
 <template>
@@ -11,8 +31,10 @@ import { ref } from 'vue'
 
     <!-- Search bar -->
     <div class="search-bar">
-        <input>
-        <button id="search">Search</button>
-        <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+        <form @submit.prevent='search'>
+            <input v-model='searchTerm' type='text' placeholder='E.g. Counselling'>
+            <button id="search" type='submit'>Search</button>
+            <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+        </form>
     </div>
 </template>
