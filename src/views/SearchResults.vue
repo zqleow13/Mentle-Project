@@ -17,9 +17,10 @@ const useSearchResults = () => {
 
     if (result.length > 0 && result[0].values.length > 0) {
         searchResults.value = result[0].values;
+        db.close();
     }
 
-      db.close();
+      
     };
 
   // Use onMounted for lifecycle hook equivalent to created

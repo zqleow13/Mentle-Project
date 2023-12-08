@@ -9,5 +9,6 @@ Mentle is a website that collates mental health resources in Singapore and put t
 - HTML
 - CSS
 - Vue.js
+- SQLite3
 
 
