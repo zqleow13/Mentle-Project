@@ -1,7 +1,7 @@
 <script>
 import { ref, onMounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import initSqlJs from 'sql.js';
+import axios from 'axios';
 
 const useSearchResults = () => {
   const searchResults = ref([]);
@@ -9,18 +9,16 @@ const useSearchResults = () => {
   const router = useRouter();
 
   const fetchSearchResults = async () => {
-    const SQL = await initSqlJs();
-    const dbBuffer = await fetch('/resources.db').then((res) => res.arrayBuffer());
-    const db = new SQL.Database(new Uint8Array(dbBuffer));
-    const query = `SELECT * FROM resources WHERE name LIKE '%${searchTerm.value}%'`;
-    const result = db.exec(query);
+    try {
+      const response = await axios.get('/api/search', {
+        params: { term: searchTerm.value },
+      });
 
-    if (result.length > 0 && result[0].values.length > 0) {
-        searchResults.value = result[0].values;
-        db.close();
+      searchResults.value = response.data;
+    } catch (error) {
+      console.error('Error fetching search results:', error);
     }
 
-      
     };
 
   // Use onMounted for lifecycle hook equivalent to created
@@ -60,7 +58,7 @@ export default {
 
     <!-- Search bar -->
     <div class="search-bar">
-        <input v-model='searchTerm'>
+        <input>
         <button @click='fetchSearchResults' id="search" type="button">Search</button>
         <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
     </div>

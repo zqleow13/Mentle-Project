@@ -3,7 +3,7 @@ const sqlite3 = require('sqlite3').verbose();
 const csv = require('fast-csv');
 const fs = require('fs');
 const app = express();
-const port = 5173;
+const port = 3000;
 
 // Create SQLite database and table
 const db = new sqlite3.Database('resources.db', (err) => {
@@ -54,6 +54,23 @@ app.get('/api/resources', (req, res) => {
       }
     });
   });
+
+// API endpoint for searching
+app.get('/api/search', (req, res) => {
+  const searchTerm = req.query.term;
+  const query = `SELECT * FROM resources WHERE name LIKE '%${searchTerm}%'`;
+
+  db.all(query, (err, rows) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    res.json(rows);
+  });
+});
+ 
   
   app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
