@@ -10,7 +10,7 @@ const useSearchResults = () => {
 
   const fetchSearchResults = async () => {
     try {
-      const response = await axios.get('/api/search', {
+      const response = await axios.get('http://localhost:3000/api/search', {
         params: { term: searchTerm.value },
       });
 
@@ -53,7 +53,7 @@ export default {
     <div class="search-header">
         <h1>Mentle</h1>
         <h2>Search Results</h2>
-        <h2>Results for: {{ searchTerm }}</h2>
+        <h2>Results for: {{ searchTerm.value }}</h2>
     </div>
 
     <!-- Search bar -->
@@ -66,8 +66,8 @@ export default {
     <!-- Search results -->
     <div class="results-container">
         <ul>
-            <li v-for='result in searchResults' :key='result.id'>
-                {{ result.name }}
+            <li v-for='result in searchResults' :key='result.ID'>
+                {{ result.Name }}
             </li>
         </ul>
     </div>

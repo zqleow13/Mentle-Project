@@ -23,7 +23,7 @@ db.run('CREATE TABLE IF NOT EXISTS resources (ID INTEGER PRIMARY KEY, Name TEXT 
 });
 
 // Import data from CSV to SQLite
-const csvFilePath = 'resources.csv';
+const csvFilePath = 'resourcesdata.csv';
 
 const stream = fs.createReadStream(csvFilePath);
 

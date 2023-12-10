@@ -1,8 +1,12 @@
 import express from 'express';
 import sqlite from 'sqlite3';
+import cors from 'cors';
+
 const app = express();
 const port = 3000;
+
 const sqlite3 = sqlite.verbose();
+app.use(cors());
 
 // Connect to the SQLite database
 const db = new sqlite3.Database('resources.db', (err) => {
