@@ -34,6 +34,7 @@ const processData = (data) => {
                 reject(err);
             } else {
                 resolve();
+                console.log(data);
             }
         });
     });

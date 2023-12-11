@@ -33,7 +33,7 @@ app.get('/api/resources', (req, res) => {
 // API endpoint for searching
 app.get('/api/search', (req, res) => {
   const searchTerm = req.query.term;
-  const query = `SELECT * FROM resources WHERE name LIKE '%${searchTerm}%'`;
+  const query = `SELECT * FROM resources WHERE name LIKE '%${searchTerm}%' COLLATE NOCASE`;
 
   db.all(query, (err, rows) => {
     if (err) {
