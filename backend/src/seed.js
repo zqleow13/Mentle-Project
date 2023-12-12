@@ -5,7 +5,7 @@ import fs from 'fs';
 const sqlite3 = sqlite.verbose();
 
 // Create SQLite database and connect to db
-const db = new sqlite3.Database('resources.db', (err) => {
+const db = new sqlite3.Database('./resources.db', (err) => {
     if (err) {
         console.error('Error connecting to the database:', err.message);
     } else {
@@ -14,13 +14,13 @@ const db = new sqlite3.Database('resources.db', (err) => {
 });
 
 // Create resources table
-db.run('CREATE TABLE IF NOT EXISTS resources (ID INTEGER PRIMARY KEY, Name TEXT UNIQUE, Organisation TEXT, Type TEXT, Audience TEXT, Location TEXT, Free TEXT, Referral TEXT)', (err) => {
-    if (err) {
-        console.error('Error creating table:', err.message);
-    } else {
-        console.log('Table created successfully');
-    }
-});
+// db.run('CREATE TABLE IF NOT EXISTS resources (ID INTEGER PRIMARY KEY, Name TEXT UNIQUE, Organisation TEXT, Type TEXT, Audience TEXT, Location TEXT, Free TEXT, Referral TEXT)', (err) => {
+//     if (err) {
+//         console.error('Error creating table:', err.message);
+//     } else {
+//         console.log('Table created successfully');
+//     }
+// });
 
 // Import data from CSV to SQLite
 const csvFilePath = 'resourcesdata.csv';
