@@ -5,13 +5,13 @@ import axios from 'axios';
 
 const useSearchResults = () => {
   const searchResults = ref([]);
-  const searchTerm = ref('');
+  const resultSearchTerm = ref('');
   const router = useRouter();
 
   const fetchSearchResults = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/search', {
-        params: { term: searchTerm.value },
+        params: { term: resultSearchTerm.value },
       });
 
       searchResults.value = response.data;
@@ -21,15 +21,20 @@ const useSearchResults = () => {
 
     };
 
-  // Use onMounted for lifecycle hook equivalent to created
-  onMounted(fetchSearchResults);
+   // Use onMounted for lifecycle hook 
+   onMounted(fetchSearchResults);
 
-  // Use watch to reactively call fetchSearchResults when $route.query.term changes
-  watch(() => router.currentRoute.value.query.term, fetchSearchResults);
+  // Use watch to reactively call fetchSearchResults when search term changes
+  watch(() => router.currentRoute.value.query.term, (newTerm, oldTerm) => {
+      if (newTerm !== oldTerm) {
+        resultSearchTerm.value = newTerm;
+        fetchSearchResults();
+      }
+    });
 
   return {
     searchResults,
-    searchTerm,
+    resultSearchTerm,
     fetchSearchResults,
   };
 };
@@ -37,11 +42,11 @@ const useSearchResults = () => {
 export default {
   setup() {
     // Call the useSearchResults function to get the reactive state and methods
-    const { searchResults, searchTerm, fetchSearchResults } = useSearchResults();
+    const { searchResults, resultSearchTerm, fetchSearchResults } = useSearchResults();
 
     return {
       searchResults,
-      searchTerm,
+      resultSearchTerm,
       fetchSearchResults,
     };
   },
@@ -53,14 +58,13 @@ export default {
     <div class="search-header">
         <h1>Mentle</h1>
         <h2>Search Results</h2>
-        <h2>Results for: {{ searchTerm.value }}</h2>
+        <h2>Results for: {{ resultSearchTerm.value }}</h2>
     </div>
 
     <!-- Search bar -->
     <div class="search-bar">
-        <input>
+        <input v-model="resultSearchTerm">
         <button @click='fetchSearchResults' id="search" type="button">Search</button>
-        <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
     </div>
 
     <!-- Search results -->
