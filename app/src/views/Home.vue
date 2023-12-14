@@ -1,28 +1,3 @@
-<script>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-
-export default {
-    setup() {
-        const router = useRouter();
-
-        // Initialise searchTerm - value of search input field 
-        const homeSearchTerm = ref('');
-
-        // 'search' function - to be called when user submit the search form. It will navigate to search-results page with their search term value as query parameter
-        const search = () => {
-            console.log('Searching for:', homeSearchTerm.value);
-            router.push({ name: 'search-results', query: { term: homeSearchTerm.value }});
-        };
-
-        return {
-            homeSearchTerm,
-            search,
-        };
-    },
-};
-</script>
-
 <template>
     <!-- Project name and slogan -->
     <div class="header">
@@ -32,9 +7,22 @@ export default {
 
     <!-- Search bar -->
     <div class="search-bar">
-        <form @submit.prevent='search'>
-            <input v-model='homeSearchTerm' type='text' placeholder='E.g. Counselling'>
-            <button id="search" type='submit'>Search</button>
-        </form>
+        <SearchBar :onSearch="handleSearch" :searchTerm="searchTerm"/>
     </div>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import SearchBar from '@/components/SearchBar.vue';
+
+const router = useRouter();
+const searchTerm = ref('');
+
+const handleSearch = (searchTerm) => {
+    console.log('Searching for:', searchTerm.value);
+    router.push({ name: 'search-results', query: { term: searchTerm.value }});
+};
+</script>
+
+
