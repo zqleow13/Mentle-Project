@@ -4,7 +4,7 @@
         <h1>Mentle</h1>
         <p>Find your mental health resources all in one place</p>
     </div>
-
+    <br/>
     <!-- Search bar -->
     <div class="search-bar">
         <SearchBar :onSearch="handleSearch" :searchTerm="searchTerm"/>
@@ -25,4 +25,9 @@ const handleSearch = (searchTerm) => {
 };
 </script>
 
+<style scoped>
+h1 {
+    font-weight: bold;
+}
+</style>
 

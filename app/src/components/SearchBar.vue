@@ -14,11 +14,20 @@
  const localSearchTerm = ref('');
  
  const search = () => {
-   // Emit the onSearch event with the current searchTerm
-   onSearch(localSearchTerm.value);
- };
+  // Trim any whitespace from the search term
+  const trimmedSearchTerm = localSearchTerm.value.trim();
+
+  // Check if the search term is not empty
+  if (trimmedSearchTerm !== '') {
+    // Emit the onSearch event with the current localSearchTerm value
+    onSearch(trimmedSearchTerm);
+  } else {
+    // Optionally, you can provide feedback to the user that the search term is required
+    alert('Search term is empty. Please enter a search term.');
+  }
+};
  </script>
   
   <style scoped>
-  /* Add your styling here */
+
   </style>

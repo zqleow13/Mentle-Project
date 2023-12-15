@@ -26,3 +26,7 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# Database
+/backend/resources.db
+/backend/resourcesdata.csv

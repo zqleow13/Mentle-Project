@@ -44,7 +44,7 @@ const fetchSearchResults = async () => {
 };
 
 // Use onMounted for lifecycle hook
-onMounted(fetchSearchResults);
+// onMounted(fetchSearchResults);
 
 // Use watch to reactively call fetchSearchResults when search term changes
 watch(() => router.currentRoute.value.query.term, (newTerm, oldTerm) => {
