@@ -9,14 +9,13 @@
 
     <!-- Search bar -->
     <SearchBar :onSearch="handleSearch"/>
+    <br>
 
     <!-- Search results -->
     <div class="results-container">
-      <ul>
-        <li v-for="result in searchResults" :key="result.ID">
+        <div class="result" v-for="result in searchResults" :key="result.ID">
           {{ result.Name }}
-        </li>
-      </ul>
+        </div>
     </div>
   </div>
 </template>
@@ -59,3 +58,36 @@ const handleSearch = (searchTerm) => {
   fetchSearchResults();
 };
 </script>
+
+<style scoped>
+  body {
+    background-color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  h1, .result {
+    font-weight: bold;
+  }
+
+  .results-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .result {
+    width: 70em;
+    height: 5em;
+    background-color: rgb(162, 216, 255);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  .result:hover {
+    cursor: pointer;
+    background-color:rgb(123, 194, 245);
+  }
+</style>
