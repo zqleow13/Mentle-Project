@@ -10,5 +10,5 @@ Mentle is a website that collates mental health resources in Singapore and put t
 - CSS
 - Vue.js
 - SQLite3
-
-
+- Node.js
+- Express.js
