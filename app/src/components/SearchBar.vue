@@ -1,20 +1,17 @@
 <script setup>
 import { ref } from 'vue';
 
-const { onSearch, searchTerm } = defineProps(['onSearch', 'searchTerm']);
 const localSearchTerm = ref('');
+const emits = defineEmits(['search']);
 
 const search = () => {
- // Trim any whitespace from the search term
  const trimmedSearchTerm = localSearchTerm.value.trim();
 
- // Check if the search term is not empty
+ // To prevent user from searching when nothing is in input
  if (trimmedSearchTerm !== '') {
-   // Emit the onSearch event with the current localSearchTerm value
-   onSearch(trimmedSearchTerm);
+   emits('search', trimmedSearchTerm);
  } else {
-   // Optionally, you can provide feedback to the user that the search term is required
-   console.alert('Search term is empty. Please enter a search term.');
+   alert('Search term is empty. Please enter a search term.');
  }
 };
 </script>

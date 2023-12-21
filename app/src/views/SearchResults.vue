@@ -1,19 +1,16 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 import axios from 'axios';
 import SearchBar from '@/components/SearchBar.vue';
 
 const searchResults = ref([]);
-const resultSearchTerm = ref('');
-const router = useRouter();
-
-const props = defineProps([''])
+const term = ref('');
+const props = defineProps(['term']);
 
 const fetchSearchResults = async () => {
   try {
     const response = await axios.get('http://localhost:3000/api/search', {
-      params: { term: resultSearchTerm.value },
+      params: { term: term.value },
     });
 
     searchResults.value = response.data;
@@ -23,25 +20,23 @@ const fetchSearchResults = async () => {
 };
 
 const handleSearch = (searchTerm) => {
-  resultSearchTerm.value = searchTerm;
+  term.value = searchTerm;
   fetchSearchResults();
-};
+}
+
 </script>
 
 <template>
   <div>
-    <!-- Header -->
     <div class="search-header">
       <h1>Mentle</h1>
       <h2>Search Results</h2>
-      <h2>Results for: {{ resultSearchTerm }}</h2>
+      <h2>Results for: {{ term }}</h2>
     </div>
 
-    <!-- Search bar -->
-    <SearchBar @searchEmit="handleSearch"/>
+    <SearchBar @search="handleSearch"/>
     <br>
 
-    <!-- Search results -->
     <div class="results-container">
         <div class="result" v-for="result in searchResults" :key="result.ID">
           {{ result.Name }}
