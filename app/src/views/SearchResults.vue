@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import SearchBar from '@/components/SearchBar.vue';
+import { RouterLink } from "vue-router";
 
 const searchResults = ref([]);
 const term = ref('');
@@ -11,7 +12,7 @@ const fetchSearchResults = async () => {
   try {
     const response = await axios.get('http://localhost:3000/api/search', {
       params: { term: term.value },
-    });
+    }); 
 
     searchResults.value = response.data;
   } catch (error) {
@@ -38,9 +39,12 @@ const handleSearch = (searchTerm) => {
     <br>
 
     <div class="results-container">
-        <div class="result" v-for="result in searchResults" :key="result.ID">
-          {{ result.Name }}
-        </div>
+        <router-link 
+        v-for="result in searchResults" 
+        :key="result.ID" 
+        :to="{ name: 'content', params: { resultName: result.Name } }">
+         <div class="result">{{ result.Name }}</div>
+          </router-link>  
     </div>
   </div>
 </template>
