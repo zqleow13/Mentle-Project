@@ -17,10 +17,13 @@ const db = new sqlite3.Database('resources.db', (err) => {
   }
 });
 
-// API endpoint to fetch items
-app.get('/api/resources', (req, res) => {
+// API endpoint to fetch items for Content View
+app.get('/api/resources/:resultName', (req, res) => {
+  const resultName = req.params.resultName;
+  // console.log('Fetching data for resultName:', resultName);
+
   // Retrieve items from the SQLite table
-  db.all('SELECT * FROM resources', (err, rows) => {
+  db.all('SELECT * FROM resources WHERE Name = ?', [resultName], (err, rows) => {
     if (err) {
       console.error('Error fetching data:', err.message);
       res.status(500).json({ error: 'Internal Server Error' });

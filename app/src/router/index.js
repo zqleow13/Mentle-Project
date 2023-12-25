@@ -21,7 +21,8 @@ const router = createRouter({
         {
             path: "/content/:resultName",
             name: "content",
-            component: Content
+            component: Content,
+            props: true
         }
     ]
 })
